@@ -58,6 +58,26 @@ function getAmount(string $strAmount) {
   return (float) str_replace('$', '', $strAmount);
 }
 
-echo '<pre>';
-print_r($rows);
-echo '</pre>';
+function printTransactions() {
+  global $rows;
+  foreach ($rows as $row) {
+    [$date, $check, $description, $amount] = $row;
+
+    $date = date('M j, Y', strtotime($date));
+
+    $amount = match (getAmount($amount) <=> 0) {
+      1 => "<span class=\"green\">{$amount}</span>",
+      0 => $amount,
+      -1 => "<span class=\"red\">{$amount}</span>"
+    };
+
+    echo <<<ROW
+      <tr>
+        <td>{$date}</td>
+        <td>{$check}</td>
+        <td>{$description}</td>
+        <td>{$amount}</td>
+      </tr>
+    ROW;
+  }
+}

@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-        <!-- YOUR CODE -->
+        <?php printTransactions() ?>
     </tbody>
     <tfoot>
       <tr>

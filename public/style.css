@@ -34,3 +34,11 @@ table tr td {
 tfoot tr th {
   text-align: right;
 }
+
+span.red {
+  color: hsl(0, 90%, 60%);
+}
+
+span.green {
+  color: hsl(120, 50%, 50%);
+}

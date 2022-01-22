@@ -40,7 +40,7 @@ function readCSVFile(array &$arr, string $path) {
 
 function getIncome(array $arr): int|float {
   return array_reduce($arr, function($carry, $item) {
-    $amount = (float) str_replace('$', '', $item[3]);
+    $amount = getAmount($item[3]);
     if ($amount < 0) return $carry;
     return $carry + $amount;
   }, 0);
@@ -48,10 +48,14 @@ function getIncome(array $arr): int|float {
 
 function getExpense(array $arr): int|float {
   return array_reduce($arr, function($carry, $item) {
-    $amount = (float) str_replace('$', '', $item[3]);
+    $amount = getAmount($item[3]);
     if ($amount > 0) return $carry;
     return $carry + $amount;
   }, 0);
+}
+
+function getAmount(string $strAmount) {
+  return (float) str_replace('$', '', $strAmount);
 }
 
 echo '<pre>';

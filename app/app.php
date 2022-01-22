@@ -54,8 +54,20 @@ function getExpense(array $arr): int|float {
   }, 0);
 }
 
-function getAmount(string $strAmount) {
-  return (float) str_replace('$', '', $strAmount);
+function getAmount(string $amount) {
+  return (float) str_replace('$', '', $amount);
+}
+
+function addCurrency(int|float|string $amount): string {
+  $amount = (float) $amount;
+
+  if ($amount >= 0) {
+    $amount = '$' . number_format((float) $amount);
+  } else {
+    $amount = substr_replace(number_format((float) $amount), '$', 1, 0);
+  }
+  
+  return $amount;
 }
 
 function printTransactions() {
@@ -80,4 +92,19 @@ function printTransactions() {
       </tr>
     ROW;
   }
+}
+
+function printIncome(): void {
+  global $income;
+  echo addCurrency($income);
+}
+
+function printExpense(): void {
+  global $expense;
+  echo addCurrency($expense);
+}
+
+function printTotal(): void {
+  global $total;
+  echo addCurrency($total);
 }

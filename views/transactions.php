@@ -23,15 +23,15 @@
     <tfoot>
       <tr>
         <th colspan="3">Total Income:</th>
-        <td><!-- YOUR CODE --></td>
+        <td><?php printIncome() ?></td>
       </tr>
       <tr>
         <th colspan="3">Total Expense:</th>
-        <td><!-- YOUR CODE --></td>
+        <td><?php printExpense() ?></td>
       </tr>
       <tr>
         <th colspan="3">Net Total:</th>
-        <td><!-- YOUR CODE --></td>
+        <td><?php printTotal() ?></td>
       </tr>
     </tfoot>
   </table>
